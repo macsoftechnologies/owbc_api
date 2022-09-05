@@ -10,5 +10,5 @@ export class userDto {
   @ApiProperty()
   phoneNumber: string;
   @ApiProperty()
-  profilePic: string;
+  userId: string;
 }

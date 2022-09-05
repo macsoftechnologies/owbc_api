@@ -14,9 +14,7 @@ export class UserService {
       if (adminResp) {
         return {
           statusCode: HttpStatus.OK,
-          addLang: {
-            selectedLang: adminResp,
-          },
+          data: adminResp,
         };
       }
       return {
@@ -43,7 +41,9 @@ export class UserService {
           return {
             statusCode: HttpStatus.OK,
             message: 'Login SuccessFully',
-            logindetails: loginRes,
+            name: loginRes.name,
+            userId: loginRes.userId,
+            contact: loginRes.phoneNumber,
           };
         }
 
