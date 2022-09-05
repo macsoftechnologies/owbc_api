@@ -1,5 +1,5 @@
 import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Date, Document } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 @Schema({ timestamps: true })
 export class checkIn extends Document {

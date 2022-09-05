@@ -5,6 +5,8 @@ import { AdminModule } from './admin/admin.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { CheckInModule } from './check-in/check-in.module';
+import { CheckoutModule } from './checkout/checkout/checkout.module';
+import { PollingModule } from './polling/polling/polling.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
@@ -13,6 +15,8 @@ import { CheckInModule } from './check-in/check-in.module';
     AdminModule,
     UserModule,
     CheckInModule,
+    CheckoutModule,
+    PollingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

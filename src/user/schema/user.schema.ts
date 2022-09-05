@@ -3,11 +3,11 @@ import { v4 as uuid } from 'uuid';
 import { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class user extends Document {
-  @Prop()
+  @Prop({ unique: true })
   name: string;
   @Prop()
   password: string;
-  @Prop()
+  @Prop({ unique: true })
   email: string;
   @Prop()
   phoneNumber: string;
