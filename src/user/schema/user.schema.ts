@@ -7,7 +7,7 @@ export class user extends Document {
   name: string;
   @Prop()
   password: string;
-  @Prop({ unique: true })
+  @Prop()
   email: string;
   @Prop()
   phoneNumber: string;
