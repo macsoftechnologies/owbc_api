@@ -7,6 +7,9 @@ import { UserModule } from './user/user.module';
 import { CheckInModule } from './check-in/check-in.module';
 import { CheckoutModule } from './checkout/checkout/checkout.module';
 import { PollingModule } from './polling/polling/polling.module';
+import { ProductsModule } from './products/products.module';
+import { ClientModule } from './client/client.module';
+ 
 @Module({
   imports: [
     MongooseModule.forRoot(
@@ -17,6 +20,8 @@ import { PollingModule } from './polling/polling/polling.module';
     CheckInModule,
     CheckoutModule,
     PollingModule,
+    ProductsModule,
+    ClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],
