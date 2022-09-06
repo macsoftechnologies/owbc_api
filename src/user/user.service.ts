@@ -59,4 +59,101 @@ export class UserService {
       };
     }
   }
+
+  async getUsers() {
+    try{
+      const getList = await this.userModel.find();
+      if(getList) {
+        return {
+          statusCode: HttpStatus.OK,
+          msg: "Here is the list of users",
+          data: getList,
+        }
+      }
+      return {
+        statusCode: HttpStatus.BAD_REQUEST,
+        msg: "Invalid Request",
+      }
+    } catch(error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        msg: error,
+      }
+    }
+  }
+
+  async getUserThroughId(req: userDto) {
+    try{
+      const getOne = await this.userModel.findOne({userId: req.userId});
+      if(getOne) {
+        return {
+          statusCode: HttpStatus.OK,
+          msg: "Here is the user",
+          data: getOne,
+        }
+      }
+      return {
+        statusCode: HttpStatus.BAD_REQUEST,
+        msg: "Invalid Request",
+      }
+    } catch(error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        msg: error,
+      }
+    }
+  }
+
+  async userUpdatation(req: userDto) {
+    try{
+      const remodel = await this.userModel.updateOne(
+        {userId: req.userId},
+        {$set: {
+          name: req.name,
+          eamil: req.email,
+          password: req.password,
+          phoneNumber: req.phoneNumber
+        }}
+      );
+      if(remodel) {
+        return {
+          statusCode: HttpStatus.OK,
+          msg: "Updated Successfully",
+          data: remodel,
+        }
+      }
+      return {
+        statusCode: HttpStatus.BAD_REQUEST,
+        msg: "Invalid Request",
+      }
+    } catch(error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        msg: error,
+      }
+    }
+  }
+
+  async userDeletion(req: userDto) {
+    try{
+      const eliminate = await this.userModel.deleteOne({userId: req.userId});
+      if(eliminate) {
+        return {
+          statusCode: HttpStatus.OK,
+          msg: "Deleted Successfully",
+          data: eliminate,
+        }
+      }
+      return {
+        statusCode: HttpStatus.BAD_REQUEST,
+        msg: "Invalid Request",
+      }
+    } catch(error) {
+      return{
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        msg: error,
+      }
+    }
+  }
+
 }

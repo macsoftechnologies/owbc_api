@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpStatus,
   Post,
   UseInterceptors,
@@ -65,4 +66,70 @@ export class UserController {
       };
     }
   }
+
+  @ApiTags('User')
+  @Get('/getUsersList')
+  async getUsersList() {
+    try {
+      const getAll = await this.userService.getUsers();
+      return getAll;
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message,
+      };
+    }
+  }
+
+  @ApiTags('User')
+  @ApiBody({
+    type: userDto,
+  })
+  @Post('/getUserById')
+  async getUserById(@Body() req: userDto) {
+    try {
+      const getUser = await this.userService.getUserThroughId(req);
+      return getUser;
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message,
+      };
+    }
+  }
+
+  @ApiTags('User')
+  @ApiBody({
+    type: userDto,
+  })
+  @Post('/update')
+  async updateUser(@Body() req: userDto) {
+    try {
+      const moderate = await this.userService.userUpdatation(req);
+      return moderate;
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message,
+      };
+    }
+  }
+
+  @ApiTags('User')
+  @ApiBody({
+    type: userDto,
+  })
+  @Post('/delete')
+  async deleteUser(@Body() req: userDto) {
+    try {
+      const remove = await this.userService.userDeletion(req);
+      return remove;
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message,
+      };
+    }
+  }
+
 }
