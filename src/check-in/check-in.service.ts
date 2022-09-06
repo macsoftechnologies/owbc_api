@@ -3,13 +3,17 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { checkInDto } from './dto/checkIn.dto';
 import { checkIn } from './schema/checkIn.schema';
-
+var moment = require('moment');
 @Injectable()
 export class CheckInService {
   constructor(
     @InjectModel(checkIn.name) private checkInModel: Model<checkIn>,
   ) {}
   async create(req: checkInDto, image) {
+    req.date = moment(req.createdAt).format('DD-MM-YYYY');
+    req.time = moment(req.createdAt).format('hh:mm:ss');
+    console.log(req.date);
+    console.log(req.time);
     try {
       console.log(req, 'documents...', image);
       if (image) {

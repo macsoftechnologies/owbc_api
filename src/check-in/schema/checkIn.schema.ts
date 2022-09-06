@@ -9,6 +9,10 @@ export class checkIn extends Document {
   profilePic: string;
   @Prop({ required: true, unique: true, default: uuid })
   checkIn: string;
+  @Prop()
+  date: string;
+  @Prop()
+  time: string;
 }
 
 export const checkInSchema = SchemaFactory.createForClass(checkIn);

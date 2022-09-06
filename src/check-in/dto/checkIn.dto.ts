@@ -8,4 +8,10 @@ export class checkInDto {
   profilePic: string;
   @ApiProperty()
   checkIn: string;
+  @ApiProperty()
+  date: string;
+  @ApiProperty()
+  time: string;
+  @ApiProperty()
+  createdAt: string;
 }
