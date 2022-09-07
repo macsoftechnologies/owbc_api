@@ -5,8 +5,8 @@ export class clientDto{
     clientId:string
     @ApiProperty()
     clientName:string
-    @ApiProperty()
-    Adress:[]
-    @ApiProperty()
+     @ApiProperty()
     clientPhNumber:string
+    @ApiProperty()
+    Address:[]
 }
