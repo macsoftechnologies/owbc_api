@@ -4,8 +4,6 @@ export class checkoutDto {
   @ApiProperty()
   checkoutId: string;
   @ApiProperty()
-  checkout: string;
-  @ApiProperty()
   userID: string;
   @ApiProperty()
   createdAt: string;

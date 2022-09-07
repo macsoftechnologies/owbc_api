@@ -7,8 +7,6 @@ export class checkout extends Document {
   @Prop({ required: true, default: uuid, unique: true })
   checkoutId: string;
   @Prop()
-  checkout: string;
-  @Prop()
   userID: string;
   @Prop()
   date: string;

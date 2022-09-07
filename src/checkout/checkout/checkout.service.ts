@@ -72,7 +72,6 @@ export class CheckoutService {
     try {
       const resEdit = await this.checkoutModel.updateOne(
         { checkoutId: req.checkoutId },
-        { $set: { checkout: req.checkout } },
       );
       if (resEdit) {
         return {
@@ -89,15 +88,19 @@ export class CheckoutService {
     }
   }
 
-  async checkoutbyId(req: checkoutDto) {
+  async checkoutbyuserId(req: checkoutDto) {
     try {
-      const rescheckoutId = await this.checkoutModel.find({
-        checkoutId: req.checkoutId,
-      });
-      if (rescheckoutId) {
+      const rescheckOutId = await this.checkoutModel.find({
+        $and: [{ userID: req.userID }, { date: req.date }],
+      }).lean();
+      const count = await this.checkoutModel.find({
+        $and: [{ userID: req.userID }, { date: req.date }],
+      }).count();
+      if (rescheckOutId) {
         return {
           statusCode: HttpStatus.OK,
-          feedId: rescheckoutId,
+          feedId: rescheckOutId,
+          count: count,
         };
       }
     } catch (error) {
@@ -107,4 +110,5 @@ export class CheckoutService {
       };
     }
   }
+
 }

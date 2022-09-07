@@ -58,10 +58,10 @@ export class CheckoutController {
     }
   }
 
-  @Post('/getcheckoutId')
-  async getById(@Body() req: checkoutDto) {
+  @Post('/getcheckoutuserId')
+  async getByUserId(@Body() req: checkoutDto) {
     try {
-      const res = await this.checkoutService.checkoutbyId(req);
+      const res = await this.checkoutService.checkoutbyuserId(req);
       return res;
     } catch (error) {
       return {

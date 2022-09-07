@@ -126,10 +126,14 @@ export class CheckInService {
       const rescheckInId = await this.checkInModel.find({
         $and: [{ userId: req.userId }, { date: req.date }],
       });
+      const count = await this.checkInModel.find({
+        $and: [{ userId: req.userId }, { date: req.date }],
+      }).count();
       if (rescheckInId) {
         return {
           statusCode: HttpStatus.OK,
           feedId: rescheckInId,
+          count: count,
         };
       }
     } catch (error) {
