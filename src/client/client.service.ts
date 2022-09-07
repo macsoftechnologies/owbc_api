@@ -45,4 +45,58 @@ export class ClientService {
             }
         }
       }
+
+  
+    async delclient(req:clientDto){
+        try{
+            const res=await this.clientModel.deleteOne({clientId:req.clientId})
+            if(res){
+                return{
+                    statusCode:HttpStatus.OK,
+                    Message:'deleted Sucessfully',
+                    del:res
+                }
+            }
+        }catch(error){
+            return{
+                statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+                Message:error 
+            }
+        }
+    }
+
+    async updateclient(req:clientDto){
+        try{
+            const editclient=await this.clientModel.updateOne({clientId:req.clientId},{$set:{clientName:req.clientName,Address:req.Address,clientPhNumber:req.clientPhNumber}})
+            if(editclient){
+                return{
+                    statusCode:HttpStatus.OK,
+                    Message:'updated sucessfully',
+                    edit:editclient
+                }
+            }
+        }catch(error){
+            return{
+                statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+                Message:error
+            }
+        }
+     }
+
+     async getByclient(req:clientDto){
+        try{
+            const resId=await this.clientModel.find({clientId:req.clientId})
+            if(resId){
+                return {
+                    statusCode:HttpStatus.OK,
+                    res:resId
+                }
+            }
+        }catch(error){
+            return{
+                statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+                Message:error  
+            }
+        }
+     }
 }
