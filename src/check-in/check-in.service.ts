@@ -49,4 +49,94 @@ export class CheckInService {
       };
     }
   }
+  async getcheckout() {
+    try {
+      const checkOuts = await this.checkInModel.find();
+      if (checkOuts) {
+        return {
+          statusCode: HttpStatus.OK,
+          data: checkOuts,
+        };
+      }
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
+
+  async deletecheckout(req: checkInDto) {
+    try {
+      const delcheckout = await this.checkInModel.deleteOne({
+        checkIn: req.checkIn,
+      });
+      if (delcheckout) {
+        return {
+          statusCode: HttpStatus.OK,
+          message: 'deleted  Sucessfully',
+          del: delcheckout,
+        };
+      }
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
+  async getcheckIn() {
+    try {
+      const checkIn = await this.checkInModel.find();
+      if (checkIn) {
+        return {
+          statusCode: HttpStatus.OK,
+          data: checkIn,
+        };
+      }
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
+
+  async deletecheckIn(req: checkInDto) {
+    try {
+      const delcheckIn = await this.checkInModel.deleteOne({
+        checkIn: req.checkIn,
+      });
+      if (delcheckIn) {
+        return {
+          statusCode: HttpStatus.OK,
+          message: 'deleted  Sucessfully',
+          del: delcheckIn,
+        };
+      }
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
+  async checkIn(req: checkInDto) {
+    try {
+      const rescheckInId = await this.checkInModel.find({
+        $and: [{ userId: req.userId }, { date: req.date }],
+      });
+      if (rescheckInId) {
+        return {
+          statusCode: HttpStatus.OK,
+          feedId: rescheckInId,
+        };
+      }
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
 }

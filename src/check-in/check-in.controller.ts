@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpStatus,
   Post,
   UploadedFiles,
@@ -44,6 +45,45 @@ export class CheckInController {
       return {
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
         message: error.message,
+      };
+    }
+  }
+
+  @Get('/getcheckIn')
+  async checkInGet() {
+    try {
+      const result = await this.checkInService.getcheckIn();
+      return result;
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
+
+  @Post('/deletecheckIn')
+  async checkIndel(@Body() req: checkInDto) {
+    try {
+      const resdel = await this.checkInService.deletecheckIn(req);
+      return resdel;
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
+
+  @Post('/checkCheckIns')
+  async getBycheckIn(@Body() req: checkInDto) {
+    try {
+      const res = await this.checkInService.checkIn(req);
+      return res;
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
       };
     }
   }
