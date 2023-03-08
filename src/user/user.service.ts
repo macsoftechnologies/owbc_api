@@ -10,7 +10,6 @@ export class UserService {
   async Create(req: userDto) {
     try {
       const adminResp = await this.userModel.create(req);
-
       if (adminResp) {
         return {
           statusCode: HttpStatus.OK,
