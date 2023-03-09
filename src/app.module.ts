@@ -9,6 +9,7 @@ import { CheckoutModule } from './checkout/checkout/checkout.module';
 import { PollingModule } from './polling/polling/polling.module';
 import { ProductsModule } from './products/products.module';
 import { ClientModule } from './client/client.module';
+import { AssignmentModule } from './assignment/assignment.module';
  
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ClientModule } from './client/client.module';
     PollingModule,
     ProductsModule,
     ClientModule,
+    AssignmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
