@@ -5,13 +5,27 @@ export class checkInDto {
   @ApiProperty()
   userId: string;
   @ApiProperty()
-  profilePic: string;
-  @ApiProperty()
   checkIn: string;
   @ApiProperty()
-  date: string;
+  startLocation: string;
   @ApiProperty()
-  time: string;
+  endLocation: string;
   @ApiProperty()
-  createdAt: string;
+  startVisitDate: string;
+  @ApiProperty()
+  endVisitDate: string;
+  @ApiProperty()
+  startVisitTime: string;
+  @ApiProperty()
+  endVisitTime: string;
+  @ApiProperty()
+  capturedPhotos: [];
+  @ApiProperty()
+  assignmentId: string;
+  @ApiProperty()
+  duration: string;
+  @ApiProperty()
+  locationPointId: string;
+  @ApiProperty()
+  images: [];
 }

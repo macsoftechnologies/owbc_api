@@ -5,14 +5,30 @@ import { v4 as uuid } from 'uuid';
 export class checkIn extends Document {
   @Prop()
   userId: string;
-  @Prop()
-  profilePic: string;
   @Prop({ required: true, unique: true, default: uuid })
   checkIn: string;
   @Prop()
-  date: string;
+  startLocation: string;
   @Prop()
-  time: string;
+  endLocation: string;
+  @Prop()
+  startVisitDate: string;
+  @Prop()
+  endVisitDate: string;
+  @Prop()
+  startVisitTime: string;
+  @Prop()
+  endVisitTime: string;
+  @Prop()
+  capturedPhotos: [];
+  @Prop()
+  assignmentId: string;
+  @Prop()
+  duration: string;
+  @Prop()
+  locationPointId: string;
+  @Prop()
+  images: [];
 }
 
 export const checkInSchema = SchemaFactory.createForClass(checkIn);

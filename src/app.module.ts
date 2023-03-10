@@ -10,6 +10,7 @@ import { PollingModule } from './polling/polling/polling.module';
 import { ProductsModule } from './products/products.module';
 import { ClientModule } from './client/client.module';
 import { AssignmentModule } from './assignment/assignment.module';
+import { SharedService } from './shared/shared.service';
  
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import { AssignmentModule } from './assignment/assignment.module';
     AssignmentModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SharedService],
 })
 export class AppModule {}
